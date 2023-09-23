@@ -5,9 +5,109 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>ClassNoteHarmony - Login</title>
 </head>
 <body>
-
+    <div class="wrapper">
+        <div class="login_container">
+            <p class="login_title">ClassNote <nobr style="color: rgb(0, 153, 255);">Harmony</nobr></p>
+            <p class="login_subtitle">Sign in to continue</p>
+            <button class="login_button"><img src="./api/resources/image/XFALogo.png" alt="">Sign in with XFA</button>
+        </div>
+    </div>
+    <p class="cc">Copyright © 2023 by CoHance Studios</p>
 </body>
+<script>
+    const xfaurl = "http://localhost";
+    const cuid = document.getElementById("cuid").content;
+    document.querySelector(".login_button").addEventListener("click", () => {
+        window.location.href = `${xfaurl}/authenticate?cuid=${cuid}&curl=${window.location.href}`;
+    })
+</script>
+<style>
+    .cc{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: #333333b2;
+        font-size: 20px;
+        margin: 0;
+    }
+    .login_button{
+        position: relative;
+        outline: none;
+        background-color: none;
+        border: #333 1px solid;
+        width: 300px;
+        height:40px;
+        cursor: pointer;
+        background-color: transparent;
+        color: #333333;
+        border-radius: 10px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: border 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
+    .login_button img{
+        position: absolute;
+        left: 10px;
+        width: 25px;
+    }
+    .login_button:hover{
+        border: rgba(51, 51, 51, 0.647) 1px solid;
+        color: rgba(51, 51, 51, 0.647);
+    }
+    .login_container{
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        padding: 10px;
+
+    }
+    .login_title{
+        color: #333;
+        font-size: 37px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 5px;
+        margin-top: 0;
+    }
+    .login_subtitle{
+        color: orange;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 18px;
+        font-size: 27px;
+    }
+    body{
+        background-color: #fafafa;
+        color: #333;
+    }
+    @font-face {
+        font-family: 'Product Sans';
+        src: url("./api/resources/font/Product-Sans-Regular.ttf");
+    }
+    *{
+        font-family: 'Product Sans', sans-serif;
+        
+    }
+    .wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+    }
+</style>
 </html>

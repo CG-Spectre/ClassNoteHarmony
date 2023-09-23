@@ -14,6 +14,7 @@ public class ViewHandler extends Handler{
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+        super.handle(exchange);
         String method = path.replace("_", "");
         switch (method){
             case "login":

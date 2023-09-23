@@ -17,5 +17,7 @@ public abstract class Handler implements HttpHandler {
     }
 
 
-    public abstract void handle(HttpExchange exchange) throws IOException;
+    public void handle(HttpExchange exchange) throws IOException{
+        System.out.println("Handling request for '"+path.replace("_", "/")+"'");
+    }
 }
