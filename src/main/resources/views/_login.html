@@ -22,7 +22,9 @@
     const cuid = document.getElementById("cuid").content;
     document.querySelector(".login_button").addEventListener("click", () => {
         window.location.href = `${xfaurl}/authenticate?cuid=${cuid}&curl=${window.location.href}`;
-    })
+    });
+    const cuidurl = new URLSearchParams(window.location.search).get("cuid");
+    const token = new URLSearchParams(window.location.search).get("token");
 </script>
 <style>
     .cc{
