@@ -16,6 +16,7 @@ public class Server {
         HashMap<String, String> params = new HashMap<>();
         server.createContext("/login", new ViewHandler("/login", null));
         server.createContext("/api/resources/font/Product-Sans-Regular.ttf", new FileHandler("font", "Product-Sans-Regular.ttf"));
+        server.createContext("/api/login", new LoginHandler());
         for(File file : new File("src/main/resources/image").listFiles()){
             String path = file.getName().replace("_", "/");
             server.createContext("/api/resources/image"+path, new ImageHandler(path));

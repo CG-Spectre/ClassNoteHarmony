@@ -6,13 +6,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ClassNoteHarmony - Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
-        <div class="login_container">
+        <div class="login_container" style="position: relative;">
             <p class="login_title">ClassNote <nobr style="color: rgb(0, 153, 255);">Harmony</nobr></p>
             <p class="login_subtitle">Sign in to continue</p>
             <button class="login_button"><img src="./api/resources/image/XFALogo.png" alt="">Sign in with XFA</button>
+            <p id="error" style="margin:0; color: red;transform: translateY(4px); display: none;">Error logging in.</p>
         </div>
     </div>
     <p class="cc">Copyright © 2023 by CoHance Studios</p>
@@ -25,6 +27,23 @@
     });
     const cuidurl = new URLSearchParams(window.location.search).get("cuid");
     const token = new URLSearchParams(window.location.search).get("token");
+    const rtokenprefix = new URLSearchParams(window.location.search).get("rprefix");
+    if(token && rtokenprefix){
+        $.ajax({
+            url: `./api/login?token=${token}&reftoken=${rtokenprefix}`,
+            method:"GET",
+            success: (data) => {
+                data = JSON.parse(data);
+                if(data.success){
+                    console.log(data);
+                }else{
+                    console.log(data);
+                    document.getElementById("error").style.display = "initial";
+                }
+            }
+        });
+    }
+    
 </script>
 <style>
     .cc{
