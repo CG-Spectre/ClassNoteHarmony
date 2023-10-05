@@ -17,12 +17,13 @@ public class Server {
         server.createContext("/login", new ViewHandler("/login", null));
         server.createContext("/api/resources/font/Product-Sans-Regular.ttf", new FileHandler("font", "Product-Sans-Regular.ttf"));
         server.createContext("/api/login", new LoginHandler());
+        server.createContext("/api/refresh", new RefreshHandler());
         for(File file : new File("src/main/resources/image").listFiles()){
             String path = file.getName().replace("_", "/");
             server.createContext("/api/resources/image"+path, new ImageHandler(path));
         }
         server.setExecutor(null);
         server.start();
-        System.out.println("Started on port: " + port);
+        System.out.println("Started on port: " + port);f
     }
 }

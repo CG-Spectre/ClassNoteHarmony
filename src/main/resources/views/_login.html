@@ -20,6 +20,28 @@
     <p class="cc">Copyright © 2023 by CoHance Studios</p>
 </body>
 <script>
+    document.cookie = "";
+    if(getCookie("reftoken")){
+        const reftoken = getCookie("reftoken");
+        $.ajax({
+            url: `./api/refresh?reftoken=${reftoken}`,
+            method:"GET",
+            success: (data) => {
+                data = JSON.parse(data);
+                if(data.success){
+                    setCookie("reftoken", data.reftoken);
+                    setCookie("token", data.token);
+                    loggedIn();
+                }else{
+                    console.log(data);
+                    document.getElementById("error").style.display = "initial";
+                }
+            }
+        });
+    }
+    function loggedIn(){
+        console.log("Successfully logged in!");
+    }
     const xfaurl = "http://localhost";
     const cuid = document.getElementById("cuid").content;
     document.querySelector(".login_button").addEventListener("click", () => {
@@ -35,7 +57,9 @@
             success: (data) => {
                 data = JSON.parse(data);
                 if(data.success){
-                    console.log(data);
+                    setCookie("reftoken", data.reftoken);
+                    setCookie("token", data.token);
+                    loggedIn();
                 }else{
                     console.log(data);
                     document.getElementById("error").style.display = "initial";
@@ -43,7 +67,35 @@
             }
         });
     }
-    
+    function setCookie(name,value) {
+        let unix = parseInt(value.split(":::")[1])*1000;
+        var date = new Date(unix);
+        let expires = "; expires=" + date.toUTCString();
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/;";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function eraseCookie(name) {   
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+    function deleteAllCookies() {
+        const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    }   
 </script>
 <style>
     .cc{
