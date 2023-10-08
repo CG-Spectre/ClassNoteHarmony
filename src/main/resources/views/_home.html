@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Harmony - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <img src="./api/resources/image/CNHLogo.svg" alt="" class="logo">
+            <p class="title">ClassNoteHarmony</p>
+            <img class="pfp" src="https://cdn.discordapp.com/avatars/712088208514482197/6e740c8c7f4fc8c2d0c8341f1a713fe5?size=1024" alt="">
+        </div>
+        <div class="subjects">
+            <div class="subject" style="background-color: red;">
+                <p>Math</p>
+            </div>
+            <div class="subject" style="background-color: #BB33FF;">
+                <p>English</p>
+            </div>
+            <div class="subject" style="background-color: #337AFF;">
+                <p>History</p>
+            </div>
+            <div class="subject" style="background-color: #00AD23;">
+                <p>Chemistry</p>
+            </div>
+            <div class="subject" style="background-color: #84FF00;">
+                <p>Biology</p>
+            </div>
+            <div class="subject" style="background-color: #33FFC9;">
+                <p>Physics</p>
+            </div>
+            <div class="subject" style="background-color: #000000;">
+                <p style="color: white;">Language</p>
+            </div>
+            <div class="subject" style="background-color: #000000;">
+                <p style="color: white;">CS</p>
+            </div>
+        </div>
+        <div class="notes">
+            <div class="note" style="background-color: rgba(255, 0, 0, 0.360);">
+                <p>Inverses D2 Homework</p>
+                <img src="./api/resources/image/placeholder.jpg" >
+                <p>Accel. Precalc</p>
+            </div>
+            <div class="note" style="background-color: #00AD235c;">
+                <p>Flick your Bic Lab</p>
+                <img src="./api/resources/image/placeholder.jpg" >
+                <p>AP Chemistry</p>
+            </div>
+            <div class="note" style="background-color: #0000005c;">
+                <p>Interpretive Practice 1</p>
+                <img src="./api/resources/image/placeholder.jpg" >
+                <p>Spanish III Honors</p>
+            </div>
+            <div class="note" style="background-color: #BB33FF5c;">
+                <p>Citation Practice</p>
+                <img src="./api/resources/image/placeholder.jpg" >
+                <p>AP Seminar</p>
+            </div>
+            <div class="note" style="background-color: #337AFF5c;">
+                <p>Revolutionary Timeline</p>
+                <img src="./api/resources/image/placeholder.jpg" >
+                <p>AP US History</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+        if(getCookie("token")){
+            console.log("Token found");
+            $.ajax({
+                
+            })
+        }else if(getCookie("reftoken")){
+            console.log("Refresh token found");
+        }else{
+            console.log("No token found");
+        }
+        function windowResized(){
+            const width = window.innerWidth - 20;
+            let perRow = Math.floor(width/(340+20));
+            let leftOverPixels = (width%(340+20));
+            let newWidth = 300 + (Math.floor(leftOverPixels/perRow));
+            document.querySelectorAll(".note").forEach((note) => {
+                note.style.width = `${newWidth}px`;
+            });
+        }
+        window.onload = windowResized;
+        window.onresize = windowResized;
+    </script>
+    <style>
+        *{
+            overflow-x: hidden;
+        }
+        .notes{
+            display: flex;
+            flex-wrap: wrap;
+            width: calc(100vw - 20px);
+        }
+        .note{
+            margin: 10px;
+            
+            padding: 0 20px;
+            height: fit-content;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 6px;
+        }
+        .note p{
+            margin: 0;
+            padding: 10px 0;
+            color: white;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .note img{
+            width: 100%;
+        }
+        .subject{
+            border-radius: 6px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 150px;
+            margin: 10px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        .subject p{
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            
+        }
+        .subjects::-webkit-scrollbar{
+            height: 5px;
+        }
+        .subjects::-webkit-scrollbar-track {
+            background: #fafafa;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #c9c9c97a;
+            border-radius: 5px;
+        }
+        .subjects{
+            overflow-x:auto;
+            overflow-y: hidden;
+            margin: 10px 0px;
+            width: 100vw;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+        .pfp{
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            position: absolute;
+            right: 10px;
+            border: black solid 3px;
+        }
+        *{
+            color: black;
+            font-family: "Alkatra", sans-serif;
+        }
+        .wrapper{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .header{
+            font-size: 30px;
+            width: calc(100vw - 20px);
+            height: 75px;
+            margin-top: 10px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .title{
+            position: absolute;
+            left: 85px;
+        }
+        .header .logo{
+            width: 75px;
+            position: absolute;
+            left: 5px;
+        }
+        body{
+            background-color: #fafafa;
+        }
+    </style>
+</body>
+</html>

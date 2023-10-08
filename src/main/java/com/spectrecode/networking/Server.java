@@ -18,12 +18,13 @@ public class Server {
         server.createContext("/api/resources/font/Product-Sans-Regular.ttf", new FileHandler("font", "Product-Sans-Regular.ttf"));
         server.createContext("/api/login", new LoginHandler());
         server.createContext("/api/refresh", new RefreshHandler());
+        server.createContext("/home", new ViewHandler("/home", null));
         for(File file : new File("src/main/resources/image").listFiles()){
             String path = file.getName().replace("_", "/");
             server.createContext("/api/resources/image"+path, new ImageHandler(path));
         }
         server.setExecutor(null);
         server.start();
-        System.out.println("Started on port: " + port);f
+        System.out.println("Started on port: " + port);
     }
 }

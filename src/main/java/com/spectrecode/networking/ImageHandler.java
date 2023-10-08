@@ -14,6 +14,11 @@ public class ImageHandler extends Handler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         super.handle(exchange);
+        if(path.endsWith(".svg")){
+            Headers responseHeaders = exchange.getResponseHeaders();
+            responseHeaders.set("Content-Type", "image/svg+xml");
+        }
+
         File file = new File("src/main/resources/image/" + path);
         exchange.sendResponseHeaders(200, file.length());
         OutputStream os = exchange.getResponseBody();
