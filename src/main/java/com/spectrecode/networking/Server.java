@@ -19,6 +19,7 @@ public class Server {
         server.createContext("/api/login", new LoginHandler());
         server.createContext("/api/refresh", new RefreshHandler());
         server.createContext("/home", new ViewHandler("/home", null));
+        server.createContext("/api/schoolsearch", new SchoolSearchHandler());
         for(File file : new File("src/main/resources/image").listFiles()){
             String path = file.getName().replace("_", "/");
             server.createContext("/api/resources/image"+path, new ImageHandler(path));
