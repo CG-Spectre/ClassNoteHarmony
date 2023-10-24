@@ -1,5 +1,6 @@
 package com.spectrecode;
 
+import com.spectrecode.data.Database;
 import com.spectrecode.data.Schools;
 import com.spectrecode.networking.Server;
 
@@ -8,5 +9,6 @@ public class ClassNoteHarmony {
     public static void main(String[] args) throws Exception {
         server = new Server();
         Schools.init();
+        Database.init();
     }
 }

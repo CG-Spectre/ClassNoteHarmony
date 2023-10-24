@@ -42,3 +42,4 @@ bin/
 .DS_Store
 src/main/resources/json/publicschools.json
 *.json
+src/main/resources/json/credentials.json
