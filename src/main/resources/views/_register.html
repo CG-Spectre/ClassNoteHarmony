@@ -37,40 +37,21 @@
                 }
             }
         });
+    }else{
+        document.location.href = "./login";
     }
     function loggedIn(hasAccount){
         console.log("Successfully logged in!");
         if(hasAccount){
             document.location.href = "./home";
         }else{
-            document.location.href = "./register";
+            /* we good for this page*/
         }
     }
     const xfaurl = "http://localhost";
-    const cuid = document.getElementById("cuid").content;
     document.querySelector(".login_button").addEventListener("click", () => {
         window.location.href = `${xfaurl}/authenticate?cuid=${cuid}&curl=${window.location.href}`;
     });
-    const cuidurl = new URLSearchParams(window.location.search).get("cuid");
-    const token = new URLSearchParams(window.location.search).get("token");
-    const rtokenprefix = new URLSearchParams(window.location.search).get("rprefix");
-    if(token && rtokenprefix){
-        $.ajax({
-            url: `./api/login?token=${token}&reftoken=${rtokenprefix}`,
-            method:"GET",
-            success: (data) => {
-                data = JSON.parse(data);
-                if(data.success){
-                    setCookie("reftoken", data.reftoken);
-                    setCookie("token", data.token);
-                    loggedIn(data.hasAccount);
-                }else{
-                    console.log(data);
-                    document.getElementById("error").style.display = "initial";
-                }
-            }
-        });
-    }
     function setCookie(name,value) {
         let unix = parseInt(value.split(":::")[1])*1000;
         var date = new Date(unix);

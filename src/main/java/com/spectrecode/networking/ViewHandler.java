@@ -37,7 +37,6 @@ public class ViewHandler extends Handler{
             }
             response = response.replace("<head>", "<head>"+paramsString);
         }
-        System.out.println(response);
         exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());

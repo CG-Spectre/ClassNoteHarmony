@@ -2,10 +2,12 @@ package com.spectrecode.networking;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.spectrecode.data.Database;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jetbrains.annotations.Nullable;
 
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -62,7 +64,8 @@ public class RefreshHandler extends Handler {
         }else{
             String tokenf = gsonResp.get("data").getAsJsonObject().get("token").getAsString();
             String reftokenf = gsonResp.get("data").getAsJsonObject().get("reftoken").getAsString();
-            resp = "{\"success\":true,\"token\":\""+tokenf+"\",\"reftoken\":\""+reftokenf+"\"}";
+            boolean hasAccount = Database.checkLogin(tokenf);
+            resp = "{\"success\":true,\"token\":\""+tokenf+"\",\"reftoken\":\""+reftokenf+"\", \"hasAccount\":"+hasAccount+"}";
         }
         System.out.println(resp);
         byte[] respBytes = resp.getBytes();

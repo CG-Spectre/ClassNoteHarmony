@@ -15,6 +15,7 @@ public class Server {
         server = HttpServer.create(new InetSocketAddress(port), 0);
         HashMap<String, String> params = new HashMap<>();
         server.createContext("/login", new ViewHandler("/login", null));
+        server.createContext("/register", new ViewHandler("/register", null));
         server.createContext("/api/resources/font/Product-Sans-Regular.ttf", new FileHandler("font", "Product-Sans-Regular.ttf"));
         server.createContext("/api/login", new LoginHandler());
         server.createContext("/api/refresh", new RefreshHandler());
